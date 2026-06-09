@@ -31,8 +31,8 @@ export default function Register() {
     setSubmitting(true);
 
     try {
-      await register(form);
-      navigate("/settings");
+      const result = await register(form);
+      navigate(`/verify-email?email=${encodeURIComponent(result.email)}`);
     } catch (err) {
       setError(err.message);
     } finally {

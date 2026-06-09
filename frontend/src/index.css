@@ -1,7 +1,49 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+/* Titles — Grand Light */
+@font-face {
+  font-family: "Agrandir Grand";
+  src: url("/fonts/PPAgrandir-GrandLight.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Subheadings — Grand Light */
+@font-face {
+  font-family: "Agrandir Grand";
+  src: url("/fonts/PPAgrandir-GrandLight.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Body text — Regular */
+@font-face {
+  font-family: "Agrandir Grand";
+  src: url("/fonts/PPAgrandir-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold UI — Grand Heavy */
+@font-face {
+  font-family: "Agrandir Grand";
+  src: url("/fonts/PPAgrandir-GrandHeavy.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Agrandir Grand";
+  src: url("/fonts/PPAgrandir-GrandHeavy.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-family: "Agrandir Grand", system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #0f2d5c;
@@ -36,11 +78,39 @@ body {
   color: var(--ink);
 }
 
-h1,
+h1 {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
 h2,
 h3 {
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea,
+.muted,
+.muted-on-dark,
+.hero-lead,
+.content-lead,
+.hero-list,
+.eyebrow,
+.eyebrow-light,
+.panel-label,
+.public-footer,
+.stat-label,
+.stat-value,
+.user-name,
+.user-email,
+.table-row,
+.badge {
+  font-weight: 400;
 }
 
 a {
@@ -87,7 +157,6 @@ label {
   display: grid;
   gap: 0.45rem;
   font-size: 0.92rem;
-  font-weight: 600;
   color: var(--ink);
 }
 
@@ -156,6 +225,31 @@ label {
   padding: 1.4rem clamp(1.25rem, 4vw, 3rem);
 }
 
+.brand-logo-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.brand-logo-link:hover {
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-logo--nav {
+  height: 80px;
+}
+
+.brand-logo--sidebar {
+  height: 64px;
+  max-width: 100%;
+}
+
 .public-brand {
   display: inline-flex;
   align-items: center;
@@ -169,9 +263,9 @@ label {
 }
 
 .public-brand-text {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 .public-nav-actions {
@@ -211,9 +305,10 @@ label {
 
 .hero-copy h1 {
   margin: 0.4rem 0 1rem;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.08;
-  font-weight: 700;
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+  line-height: 1.12;
+  font-weight: 300;
+  letter-spacing: -0.04em;
   color: var(--blue-900);
 }
 
@@ -263,9 +358,8 @@ label {
 .eyebrow-light {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   font-size: 0.72rem;
-  font-weight: 700;
   color: var(--blue-700);
 }
 
@@ -291,8 +385,9 @@ label {
 .section-heading h2,
 .cta-band h2 {
   margin: 0.35rem 0 0.75rem;
-  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
-  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
 }
 
 .feature-grid {
@@ -310,7 +405,6 @@ label {
 .feature-card h3 {
   margin: 0 0 0.75rem;
   font-size: 1.1rem;
-  font-weight: 600;
   color: var(--blue-900);
 }
 
@@ -352,8 +446,9 @@ label {
 
 .auth-card h1 {
   margin: 0.35rem 0 0.75rem;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.85rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
   color: var(--blue-900);
 }
 
@@ -371,7 +466,6 @@ label {
   border-radius: 999px;
   padding: 0.78rem 1.2rem;
   cursor: pointer;
-  font-weight: 600;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
@@ -446,6 +540,22 @@ label {
   transform: none;
 }
 
+/* Primary / filled buttons — Grand Heavy */
+.btn-start-here,
+.btn-primary,
+.btn-light,
+.btn-danger {
+  font-weight: 600;
+}
+
+/* Secondary / outline buttons — Grand Light */
+.btn,
+.btn-glass,
+.btn-ghost,
+.btn-secondary {
+  font-weight: 300;
+}
+
 /* ── App shell / dashboard ── */
 
 .app-shell {
@@ -485,9 +595,9 @@ label {
 }
 
 .brand-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 .brand-subtitle,
@@ -506,6 +616,7 @@ label {
   padding: 0.8rem 1rem;
   border-radius: 14px;
   text-decoration: none;
+  font-weight: 300;
 }
 
 .nav-link:hover,
@@ -514,6 +625,10 @@ label {
   color: var(--blue-700);
   text-decoration: none;
   box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.35);
+}
+
+.nav-link.active {
+  font-weight: 600;
 }
 
 .sidebar-footer {
@@ -581,17 +696,17 @@ label {
 
 .page-header h1 {
   margin: 0.2rem 0 0;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 700;
+  font-size: clamp(1.6rem, 2.8vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
   color: var(--blue-900);
 }
 
 .eyebrow {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   font-size: 0.74rem;
-  font-weight: 700;
   color: var(--blue-700);
 }
 
@@ -642,10 +757,9 @@ label {
 
 .stat-value {
   margin: 0.35rem 0 0;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.85rem;
   color: var(--blue-800);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .two-column {
@@ -702,7 +816,6 @@ label {
   background: #eef5ff;
   color: #1e40af;
   font-size: 0.8rem;
-  font-weight: 700;
   text-transform: lowercase;
 }
 
@@ -746,8 +859,295 @@ label {
   color: #166534;
 }
 
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--blue-700);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .placeholder-panel {
   max-width: 760px;
+}
+
+/* ── Landing page ── */
+
+.landing-page {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.landing-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(4px);
+}
+
+.landing-blob-center {
+  width: min(72vw, 640px);
+  height: min(72vw, 640px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  background: radial-gradient(
+    circle,
+    rgba(125, 211, 252, 0.55) 0%,
+    rgba(147, 197, 253, 0.28) 38%,
+    rgba(243, 244, 246, 0) 72%
+  );
+  animation: blobPulse 8s ease-in-out infinite;
+}
+
+.landing-blob-left {
+  width: 280px;
+  height: 280px;
+  top: 18%;
+  left: -80px;
+  background: radial-gradient(
+    circle,
+    rgba(96, 165, 250, 0.35) 0%,
+    rgba(243, 244, 246, 0) 70%
+  );
+}
+
+.landing-blob-right {
+  width: 260px;
+  height: 260px;
+  bottom: 12%;
+  right: -70px;
+  background: radial-gradient(
+    circle,
+    rgba(103, 232, 249, 0.3) 0%,
+    rgba(243, 244, 246, 0) 72%
+  );
+}
+
+.landing-nav {
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.65rem clamp(1.25rem, 3vw, 2rem) 0 clamp(0.35rem, 1vw, 0.75rem);
+}
+
+.landing-nav .brand-logo-link {
+  margin-left: -0.15rem;
+}
+
+.landing-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.landing-nav-link {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.landing-nav-link:hover {
+  color: var(--blue-900);
+  text-decoration: none;
+}
+
+.landing-nav-link.active {
+  color: var(--blue-900);
+  font-weight: 600;
+}
+
+.landing-nav-link.dashboard-link {
+  color: var(--blue-700);
+}
+
+.landing-nav-link.dashboard-link:hover {
+  color: var(--blue-900);
+}
+
+.landing-hero {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.landing-hero-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.landing-title {
+  margin: 0;
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--blue-900);
+}
+
+.landing-subtitle {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.btn-start-here {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 2.4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a7f3d0 0%, #7dd3fc 55%, #93c5fd 100%);
+  color: var(--blue-900);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(125, 211, 252, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-start-here:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(125, 211, 252, 0.45);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blobPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -52%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -52%) scale(1.04);
+    opacity: 0.92;
+  }
+}
+
+.animate-in {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.animate-in-nav {
+  animation-delay: 0.15s;
+}
+
+.animate-in-title {
+  animation-delay: 0.45s;
+}
+
+.animate-in-subtitle {
+  animation-delay: 0.65s;
+}
+
+.animate-in-button {
+  animation-delay: 0.85s;
+}
+
+.animate-in-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.animate-in-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.animate-in-delay-3 {
+  animation-delay: 0.6s;
+}
+
+.animate-in-delay-4 {
+  animation-delay: 0.8s;
+}
+
+.animate-in-delay-5 {
+  animation-delay: 1s;
+}
+
+.animate-in-delay-6 {
+  animation-delay: 1.15s;
+}
+
+/* ── Content pages (About, Mission, etc.) ── */
+
+.content-page {
+  background: #fafafa;
+}
+
+.content-main {
+  position: relative;
+  z-index: 1;
+  padding: 1rem clamp(1.25rem, 4vw, 3rem) 3rem;
+}
+
+.content-intro {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+.content-intro h1 {
+  margin: 0.35rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: var(--blue-900);
+}
+
+.content-lead {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.content-panel {
+  padding: 2rem;
+  border-radius: 24px;
+  margin-bottom: 2rem;
+}
+
+.content-panel h2 {
+  margin: 0 0 0.75rem;
+  color: var(--blue-900);
+}
+
+.content-panel p {
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 @media (max-width: 1100px) {
@@ -768,6 +1168,20 @@ label {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+
+  .landing-nav {
+    align-items: flex-start;
+  }
+
+  .landing-nav-links {
+    gap: 1rem;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .brand-logo--nav {
+    height: 64px;
   }
 
   .hero-actions,

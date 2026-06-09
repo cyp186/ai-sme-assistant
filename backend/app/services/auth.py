@@ -1,3 +1,5 @@
+import hashlib
+import secrets
 from datetime import UTC, datetime, timedelta
 
 import bcrypt
@@ -7,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.models.user import User
+from app.services.email import send_verification_email
 
 
 def hash_password(password: str) -> str:
@@ -38,6 +41,15 @@ def decode_access_token(token: str) -> int | None:
         return None
 
 
+def generate_verification_code() -> str:
+    return f"{secrets.randbelow(1_000_000):06d}"
+
+
+def hash_verification_code(code: str) -> str:
+    payload = f"{code}{settings.SECRET_KEY}".encode()
+    return hashlib.sha256(payload).hexdigest()
+
+
 async def get_user_by_email(db: AsyncSession, email: str) -> User | None:
     result = await db.execute(select(User).where(User.email == email))
     return result.scalar_one_or_none()
@@ -57,6 +69,18 @@ async def authenticate_user(
     return user
 
 
+async def set_verification_code(db: AsyncSession, user: User) -> str:
+    code = generate_verification_code()
+    user.verification_code_hash = hash_verification_code(code)
+    user.verification_code_expires_at = datetime.now(UTC) + timedelta(
+        minutes=settings.VERIFICATION_CODE_EXPIRE_MINUTES
+    )
+    await db.commit()
+    await db.refresh(user)
+    await send_verification_email(user.email, user.name, code)
+    return code
+
+
 async def create_user(
     db: AsyncSession, name: str, email: str, password: str
 ) -> User:
@@ -65,8 +89,44 @@ async def create_user(
         email=email,
         password_hash=hash_password(password),
         role="owner",
+        is_verified=False,
     )
     db.add(user)
     await db.commit()
     await db.refresh(user)
+    await set_verification_code(db, user)
+    return user
+
+
+async def verify_user_email(
+    db: AsyncSession, email: str, code: str
+) -> User | None:
+    user = await get_user_by_email(db, email)
+    if user is None or user.is_verified:
+        return None
+
+    if (
+        user.verification_code_hash is None
+        or user.verification_code_expires_at is None
+        or user.verification_code_expires_at < datetime.now(UTC)
+    ):
+        return None
+
+    if user.verification_code_hash != hash_verification_code(code):
+        return None
+
+    user.is_verified = True
+    user.verification_code_hash = None
+    user.verification_code_expires_at = None
+    await db.commit()
+    await db.refresh(user)
+    return user
+
+
+async def resend_verification_code(db: AsyncSession, email: str) -> User | None:
+    user = await get_user_by_email(db, email)
+    if user is None or user.is_verified:
+        return None
+
+    await set_verification_code(db, user)
     return user

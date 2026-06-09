@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import BrandLogo from "./BrandLogo";
 import { useAuth } from "../context/AuthContext";
 
 const navItems = [
@@ -15,13 +16,7 @@ export default function Layout() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <Link to="/" className="brand">
-          <span className="brand-mark">AI</span>
-          <div>
-            <p className="brand-title">Business Assistant</p>
-            <p className="brand-subtitle">SME Dashboard</p>
-          </div>
-        </Link>
+        <BrandLogo className="brand-logo--sidebar" />
 
         <nav className="nav">
           {navItems.map((item) => (

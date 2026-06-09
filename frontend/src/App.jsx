@@ -9,10 +9,14 @@ import Customers from "./pages/Customers";
 import Dashboard from "./pages/Dashboard";
 import Enquiries from "./pages/Enquiries";
 import EnquiryDetail from "./pages/EnquiryDetail";
+import AboutPage from "./pages/AboutPage";
+import FeaturesPage from "./pages/FeaturesPage";
 import HomePage from "./pages/HomePage";
 import KnowledgeBase from "./pages/KnowledgeBase";
 import Login from "./pages/Login";
+import PartnershipPage from "./pages/PartnershipPage";
 import Register from "./pages/Register";
+import VerifyEmail from "./pages/VerifyEmail";
 
 export default function App() {
   return (
@@ -20,8 +24,13 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/partnership" element={<PartnershipPage />} />
+          <Route path="/mission" element={<Navigate to="/features" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
 
           <Route
             element={

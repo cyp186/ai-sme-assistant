@@ -24,7 +24,13 @@ export default function Login() {
       await login(email, password);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.message);
+      if (err.message.includes("Email not verified")) {
+        setError(
+          "Your email is not verified yet. Check your inbox or enter your code on the verification page."
+        );
+      } else {
+        setError(err.message);
+      }
     } finally {
       setSubmitting(false);
     }

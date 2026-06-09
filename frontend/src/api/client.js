@@ -44,6 +44,12 @@ async function request(path, options = {}) {
 export const api = {
   register: (data) => request("/auth/register", { method: "POST", body: data }),
 
+  verifyEmail: (data) =>
+    request("/auth/verify-email", { method: "POST", body: data }),
+
+  resendVerification: (data) =>
+    request("/auth/resend-verification", { method: "POST", body: data }),
+
   login: async (email, password) => {
     const form = new URLSearchParams();
     form.append("username", email);
