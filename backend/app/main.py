@@ -1,7 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, business, customers, enquiries, knowledge_base
+from app.routers import (
+    ai_responses,
+    auth,
+    business,
+    customers,
+    enquiries,
+    knowledge_base,
+)
 
 app = FastAPI(title="AI Business Assistant", version="1.0.0")
 
@@ -18,6 +25,7 @@ app.include_router(business.router)
 app.include_router(customers.router)
 app.include_router(enquiries.router)
 app.include_router(knowledge_base.router)
+app.include_router(ai_responses.router)
 
 
 @app.get("/")

@@ -95,4 +95,26 @@ export const api = {
     request(`/knowledge-base/${id}`, { method: "PUT", body: data }),
   deleteKnowledge: (id) =>
     request(`/knowledge-base/${id}`, { method: "DELETE" }),
+
+  getAIResponseStats: () => request("/ai-responses/stats"),
+
+  getAIResponses: (enquiryId) =>
+    request(`/enquiries/${enquiryId}/ai-responses`),
+
+  generateAIResponse: (enquiryId, data = {}) =>
+    request(`/enquiries/${enquiryId}/ai-responses`, {
+      method: "POST",
+      body: data,
+    }),
+
+  updateAIResponse: (enquiryId, responseId, data) =>
+    request(`/enquiries/${enquiryId}/ai-responses/${responseId}`, {
+      method: "PUT",
+      body: data,
+    }),
+
+  sendAIResponse: (enquiryId, responseId) =>
+    request(`/enquiries/${enquiryId}/ai-responses/${responseId}/send`, {
+      method: "POST",
+    }),
 };

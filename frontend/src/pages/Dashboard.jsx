@@ -23,16 +23,17 @@ export default function Dashboard() {
           return;
         }
 
-        const [customers, enquiries] = await Promise.all([
+        const [customers, enquiries, aiStats] = await Promise.all([
           api.getCustomers(),
           api.getEnquiries(),
+          api.getAIResponseStats().catch(() => ({ approved: 0 })),
         ]);
 
         setStats({
           customers: customers.length,
           enquiries: enquiries.length,
           pending: enquiries.filter((item) => item.status === "pending").length,
-          approvedResponses: 0,
+          approvedResponses: aiStats.approved,
         });
       } catch (err) {
         setError(err.message);

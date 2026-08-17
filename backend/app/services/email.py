@@ -41,3 +41,15 @@ async def send_verification_email(to_email: str, name: str, code: str) -> None:
         return
 
     await asyncio.to_thread(_send_smtp, to_email, subject, body)
+
+
+async def send_customer_response_email(
+    to_email: str,
+    enquiry_subject: str,
+    response_body: str,
+) -> None:
+    if not settings.SMTP_HOST:
+        raise RuntimeError("SMTP is not configured")
+
+    subject = f"Re: {enquiry_subject}"
+    await asyncio.to_thread(_send_smtp, to_email, subject, response_body)
